@@ -1,0 +1,573 @@
+/* --- 1. RESET CSS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Memastikan padding dan border tidak menambah ukuran elemen */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Menggunakan font dari Google Fonts (asumsi Anda akan mengimpornya di sini) */
+body {
+    font-family: 'Inter', sans-serif; /* Ganti dengan font pilihan Anda */
+    background-color: #121212; /* Latar Belakang Dark Mode */
+    color: #E0E0E0; /* Warna Teks Utama */
+    line-height: 1.6; /* Keterbacaan teks */
+    scroll-behavior: smooth; /* Animasi scroll saat klik link anchor */
+}
+
+/* Menghilangkan dekorasi link */
+a {
+    color: #00AEEF; /* Warna Aksen untuk link */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0099DD; /* Sedikit lebih gelap saat hover */
+}
+
+/* Menghilangkan bullet point pada list */
+ul {
+    list-style: none;
+}
+
+/* --- 1. CSS VARIABLES FOR THEME --- */
+:root {
+    /* 🎨 DARK MODE (Default) */
+    --color-bg: #121212;           /* Latar Belakang Utama */
+    --color-text: #E0E0E0;         /* Teks Utama */
+    --color-card-bg: #1E1E1E;      /* Latar Belakang Card/Elemen */
+    --color-border: #333;          /* Garis Pembatas */
+    --color-accent: #00AEEF;       /* Warna Aksen/CTA */
+    --color-shadow: rgba(0, 0, 0, 0.5); /* Shadow untuk dark mode */
+
+    /* Transisi Halus (Best Practice) */
+    transition: background-color 0.5s, color 0.5s; 
+}
+
+/* 🔆 LIGHT MODE OVERRIDE */
+.light-mode {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+    --color-card-bg: #545454;
+    --color-border: #000000;
+    --color-shadow: rgba(0, 0, 0, 0.1); /* Shadow lebih ringan di light mode */
+    --color-cta-text: #000000; /* Teks tombol CTA */
+}
+
+/* --- Global Reset dan Body Menggunakan Variabel --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg); /* MENGGUNAKAN VARIABEL */
+    color: var(--color-text);          /* MENGGUNAKAN VARIABEL */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+a {
+    color: var(--color-accent);
+    /* ... */
+}
+/* ... Lanjutkan mengganti warna #121212, #E0E0E0, #1E1E1E dengan variabel yang sesuai ... */
+/* --- Tambahan Styling untuk Theme Toggle --- */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    padding: 0;
+    color: var(--color-text); /* Warna ikon sesuai teks utama */
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+/* Penyesuaian Header agar tombol tampil */
+#main-header {
+    /* ... kode sebelumnya ... */
+    background-color: var(--color-bg); /* Pastikan ini menggunakan variabel */
+    /* Tambahkan sedikit padding kanan jika tombol terlalu dekat */
+    padding-right: 5%; 
+}
+
+/* --- 2. UTILITY & LAYOUT DASAR --- */
+.section-padding {
+    padding: 100px 5%; /* Padding Vertikal & Horizontal untuk setiap section */
+    max-width: 1200px; /* Batas lebar konten */
+    margin: 0 auto; /* Tengah-kan konten */
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #00AEEF;
+    color: #121212;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0099DD;
+}
+
+/* --- 3. HEADER & NAVIGASI --- */
+
+nav ul li a.active,
+nav ul li a:hover {
+    color: #00AEEF;
+    border-bottom: 2px solid #00AEEF; /* Tambahkan garis bawah penanda aktif */
+    padding-bottom: 3px;
+}
+
+#main-header {
+    background-color: rgba(18, 18, 18, 0.95); /* Sedikit transparan */
+    color: #E0E0E0;
+    position: fixed; /* Header tetap di atas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #E0E0E0;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li a {
+    color: #E0E0E0;
+    padding: 0 15px;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    color: #00AEEF;
+}
+
+/* --- 4. SECTION HERO --- */
+#hero {
+    min-height: 100vh; /* Setinggi viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+    /* Padding di sini akan ditumpuk dengan .section-padding, tapi min-height 100vh memastikan konten di tengah */
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    color: #00AEEF;
+}
+
+#hero h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+/* --- 5. Judul Section Umum --- */
+.section-title {
+    font-size: 2.5rem;
+    color: #E0E0E0;
+    margin-bottom: 50px;
+    text-align: center;
+    border-bottom: 3px solid #00AEEF; /* Garis bawah aksen */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+#about .section-padding {
+    text-align: center; /* Untuk menengahkan judul section-title */
+}
+
+/* --- 6. SECTION ABOUT (Flexbox Layout) --- */
+.about-content {
+    display: flex; /* Aktifkan Flexbox */
+    gap: 50px; /* Jarak antar kolom */
+    align-items: flex-start; /* Elemen di kolom sejajar di bagian atas */
+    text-align: left; /* Teks di kolom kembali rata kiri */
+    margin-top: 30px;
+}
+
+/* Kolom Kiri: Image */
+.about-image-wrapper {
+    flex: 1; /* Ambil 1 bagian ruang (sekitar 40% di desktop) */
+    min-width: 300px;
+}
+
+.profile-photo {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 10px; /* Sudut membulat */
+    box-shadow: 0 0 30px rgba(0, 174, 239, 0.2); /* Shadow dengan aksen biru */
+    object-fit: cover;
+}
+
+/* Kolom Kanan: Text */
+.about-text {
+    flex: 2; /* Ambil 2 bagian ruang (sekitar 60% di desktop) */
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    color: #00AEEF;
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.personal-info {
+    margin: 30px 0;
+    padding-left: 15px;
+    border-left: 3px solid #333;
+}
+
+/* Tombol sekunder (untuk CV) */
+.secondary-button {
+    background-color: transparent;
+    border: 2px solid #00AEEF;
+    color: #00AEEF;
+}
+
+.secondary-button:hover {
+    background-color: #00AEEF;
+    color: #121212;
+}
+
+/* --- 7. MEDIA QUERIES (RESPONSIVITAS) --- */
+@media (max-width: 768px) {
+    /* Untuk tablet dan mobile, tata letak ABOUT diubah menjadi satu kolom */
+    .about-content {
+        flex-direction: column; /* Tumpuk kolom menjadi vertikal */
+        gap: 30px;
+    }
+
+    .about-image-wrapper {
+        min-width: 100%;
+        order: -1; /* Pindahkan gambar ke atas (Opsional: agar gambar tampil lebih dulu di mobile) */
+        text-align: center;
+    }
+
+    .profile-photo {
+        max-width: 250px; /* Batasi lebar foto di mobile */
+    }
+
+    /* Ukuran teks di mobile */
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* --- 5. FOOTER --- */
+footer {
+    text-align: center;
+    padding: 20px 5%;
+    border-top: 1px solid #282828;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* --- 7. SECTION SKILLS (Grid Layout) --- */
+.skills-grid {
+    display: grid;
+    /* Membuat layout 3 kolom, dengan lebar minimal 300px per kolom */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Jarak antar card */
+    margin-top: 30px;
+}
+
+.skill-card {
+    background-color: #1E1E1E; /* Latar belakang card sedikit lebih terang dari body */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px); /* Efek hover mengangkat card */
+    box-shadow: 0 10px 20px rgba(0, 174, 239, 0.2); /* Shadow aksen saat hover */
+}
+
+.skill-card h3 {
+    color: #00AEEF;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.skill-card p {
+    text-align: right;
+    font-weight: bold;
+    color: #E0E0E0;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+/* --- PROGRESS BAR STYLING --- */
+.progress-bar-container {
+    background-color: #333; /* Latar belakang bar */
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden; /* Penting agar progress bar tidak keluar */
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #00AEEF; /* Warna Aksen untuk isi bar */
+    transition: width 1s ease-in-out; /* Efek animasi (akan kita aktifkan dengan JS nanti) */
+    /* Width diatur secara inline di HTML untuk progres statis */
+}
+
+/* ... di dalam @media (max-width: 768px) ... */
+/* Tidak perlu penyesuaian khusus untuk .skills-grid karena grid yang sudah fleksibel. */
+/* Kita hanya memastikan padding tidak terlalu besar */
+
+.section-padding {
+    padding: 60px 5%; /* Kurangi padding vertikal di mobile */
+}
+
+/* --- 8. SECTION PORTFOLIO (Grid Layout) --- */
+.portfolio-grid {
+    display: grid;
+    /* Membuat tata letak 3 kolom di desktop */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px; /* Jarak antar card */
+    margin-top: 30px;
+}
+
+.project-card {
+    background-color: #1E1E1E;
+    border-radius: 10px;
+    overflow: hidden; /* Penting agar gambar tidak keluar dari sudut membulat */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px); /* Efek hover yang lebih menonjol */
+    box-shadow: 0 15px 30px rgba(0, 174, 239, 0.3); /* Shadow aksen */
+}
+
+.project-image {
+    width: 100%;
+    height: 220px; /* Tinggi tetap untuk konsistensi */
+    object-fit: cover; /* Memastikan gambar menutupi area tanpa terdistorsi */
+    display: block;
+    border-bottom: 1px solid #333;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    font-size: 1.5rem;
+    color: #E0E0E0;
+    margin-bottom: 8px;
+}
+
+.project-tech-stack {
+    color: #00AEEF;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.project-info p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #B0B0B0;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Primary Button (Demo Live) */
+.link-btn:not(.secondary-link) {
+    background-color: #00AEEF;
+    color: #121212;
+}
+
+.link-btn:not(.secondary-link):hover {
+    background-color: #0099DD;
+}
+
+/* Secondary Button (Source Code) */
+.secondary-link {
+    background-color: transparent;
+    border: 2px solid #00AEEF;
+    color: #00AEEF;
+}
+
+.secondary-link:hover {
+    background-color: #00AEEF;
+    color: #121212;
+}
+
+/* --- 9. SECTION CONTACT (Flexbox Layout) --- */
+.contact-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+.contact-form-wrapper {
+    flex: 2; /* Kolom form lebih lebar */
+}
+
+.contact-info {
+    flex: 1; /* Kolom info lebih kecil */
+    background-color: #1E1E1E;
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 5px solid #00AEEF;
+}
+
+.contact-info h3 {
+    color: #E0E0E0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    color: #B0B0B0;
+}
+
+.info-item {
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-top: 1px solid #333;
+}
+
+.info-item:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.info-item a, .info-item span {
+    display: block;
+    color: #00AEEF;
+    font-weight: 500;
+}
+
+/* --- FORM STYLING --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #E0E0E0;
+}
+
+.contact-form-wrapper input[type="text"],
+.contact-form-wrapper input[type="email"],
+.contact-form-wrapper textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #1E1E1E; /* Latar belakang input */
+    border: 1px solid #333;
+    color: #E0E0E0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Fokus/Active State */
+.contact-form-wrapper input:focus,
+.contact-form-wrapper textarea:focus {
+    border-color: #00AEEF; /* Border aksen saat fokus */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.2);
+}
+
+.contact-form-wrapper textarea {
+    resize: vertical; /* Hanya izinkan resize vertikal */
+}
+
+/* Kustomisasi Tombol Kirim */
+.contact-form-wrapper .cta-button {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    padding: 15px;
+}
+
+/* --- Tambahkan atau modifikasi di dalam @media (max-width: 768px) --- */
+
+@media (max-width: 768px) {
+    /* ... (CSS media query sebelumnya) ... */
+
+    /* Contact Section: Tumpuk kolom secara vertikal */
+    .contact-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .contact-form-wrapper, .contact-info {
+        flex: auto; /* Hilangkan flex ratio di mobile */
+        width: 100%;
+    }
+}
+
+/* --- PROGRESS BAR STYLING --- */
+.progress-bar-container {
+    background-color: #333;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #00AEEF;
+    
+    /* MODIFIKASI: State Awal & Transisi */
+    width: 0; /* Awalnya lebar 0 */
+    transition: width 1s ease-in-out; 
+}
