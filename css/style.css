@@ -9,31 +9,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Menggunakan font dari Google Fonts (asumsi Anda akan mengimpornya di sini) */
-body {
-    font-family: 'Inter', sans-serif; /* Ganti dengan font pilihan Anda */
-    background-color: #121212; /* Latar Belakang Dark Mode */
-    color: #E0E0E0; /* Warna Teks Utama */
-    line-height: 1.6; /* Keterbacaan teks */
-    scroll-behavior: smooth; /* Animasi scroll saat klik link anchor */
-}
-
-/* Menghilangkan dekorasi link */
-a {
-    color: #00AEEF; /* Warna Aksen untuk link */
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0099DD; /* Sedikit lebih gelap saat hover */
-}
-
-/* Menghilangkan bullet point pada list */
-ul {
-    list-style: none;
-}
-
 /* --- 1. CSS VARIABLES FOR THEME --- */
 :root {
     /* 🎨 DARK MODE (Default) */
@@ -52,7 +27,7 @@ ul {
 .light-mode {
     --color-bg: #ffffff;
     --color-text: #000000;
-    --color-card-bg: #545454;
+    --color-card-bg: #ffffff;
     --color-border: #000000;
     --color-shadow: rgba(0, 0, 0, 0.1); /* Shadow lebih ringan di light mode */
     --color-cta-text: #000000; /* Teks tombol CTA */
@@ -69,7 +44,11 @@ body {
 
 a {
     color: var(--color-accent);
-    /* ... */
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
 }
 /* ... Lanjutkan mengganti warna #121212, #E0E0E0, #1E1E1E dengan variabel yang sesuai ... */
 /* --- Tambahan Styling untuk Theme Toggle --- */
